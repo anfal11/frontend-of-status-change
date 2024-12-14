@@ -97,7 +97,7 @@
   </div>
 
   <script>
-    //fetch the current status when the page loads
+    // Function to fetch the current status when the page loads
     async function fetchStatus() {
       try {
         showMessage('loading', 'Fetching current status...');
@@ -107,11 +107,11 @@
         if (data.status === 1) {
           document.getElementById('onBtn').disabled = true; // Disable ON button if status is 1
           document.getElementById('offBtn').disabled = false; // Enable OFF button
-          showMessage('success', 'Transfer Money is ON now');
+          showMessage('success', 'Transfer money is ON now');
         } else {
           document.getElementById('onBtn').disabled = false; // Enable ON button if status is 0
           document.getElementById('offBtn').disabled = true; // Disable OFF button
-          showMessage('success', 'Transfer Money is OFF now');
+          showMessage('success', 'Transfer money is OFF now');
         }
       } catch (error) {
         console.error('Error fetching status:', error);
@@ -123,7 +123,9 @@
     async function toggleStatus(status) {
       try {
         showMessage('loading', 'Updating status...');
-        const response = await fetch(`http://3.140.82.112:1000/toggle-status?status=${status}`);
+        const response = await fetch(`http://3.140.82.112:1000/toggle-status?status=${status}`, {
+          method: 'POST', // Change the request method to POST
+        });
         const data = await response.json();
 
         // Provide user feedback based on the response
