@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Status Toggle</title>
   <style>
-   
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f9;
@@ -61,7 +60,6 @@
       opacity: 0.9;
     }
 
-    
     .status-message {
       margin-top: 20px;
       padding: 10px;
@@ -109,12 +107,12 @@
         if (data.status === 1) {
           document.getElementById('onBtn').disabled = true; // Disable ON button if status is 1
           document.getElementById('offBtn').disabled = false; // Enable OFF button
+          showMessage('success', 'Transfer Money is ON now');
         } else {
           document.getElementById('onBtn').disabled = false; // Enable ON button if status is 0
           document.getElementById('offBtn').disabled = true; // Disable OFF button
+          showMessage('success', 'Transfer Money is OFF now');
         }
-
-        showMessage('success', 'Status loaded successfully');
       } catch (error) {
         console.error('Error fetching status:', error);
         showMessage('error', 'Failed to fetch status');
@@ -130,7 +128,9 @@
 
         // Provide user feedback based on the response
         showMessage('success', data.message);
-        fetchStatus(); // Refresh the button states after toggling
+
+        // Fetch and update the status after toggling
+        fetchStatus();
       } catch (error) {
         console.error('Error toggling status:', error);
         showMessage('error', 'Failed to update status');
