@@ -2,9 +2,9 @@
 
  on:
   push:
-    branches: [ main ]
+    branches: [ prod ]
   pull_request:
-    branches: [ main ]
+    branches: [ prod ]
 
  jobs:
 
@@ -34,7 +34,7 @@
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tnsm-frontend-status-change:${{github.run_number}} 
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tnsm-frontend-status-change-prod:${{github.run_number}} 
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
